@@ -32,33 +32,19 @@ public class RockPaperScissors {
             int rounds = Integer.parseInt(Input);
             for(int i = 1; i <= rounds; i++){
 
-                System.out.println("Enter your choice:");
+                List<String> choices = Arrays.asList("Paper", "Scissors", "Rock");
+
+                System.out.println("Enter your choice: 1)Paper 2)Scissors 3)Rock");
                 String P = new String(in.nextLine());
-                playGame(P, results);
 
-                //print map so I can see if its adding to it
-                // if (results.containsKey("P1")){
-                //     P1wins = P1wins + results.get("P1");
-                // }
-
-                // if (results.containsKey("C")){
-                //     Cwins = Cwins + results.get("C");
-                // }
+                if (Integer.parseInt(P) == 1 || Integer.parseInt(P) == 2 || Integer.parseInt(P) == 3 ){
+                    playGame(choices, P, results);
+                }
                 
-                // if (results.containsKey("Tie")){
-                //     Ties = Ties + results.get("Tie");
-                // }
+                else{
+                    System.out.println("Restart the program. ");
+                }
             }
-            //System.out.printf("P1 Wins: ", P1wins, "\n", "C Wins: ", Cwins, "\n", "Ties: ", Ties, "\n");
-            // if (P1wins > Cwins & P1wins > Ties){
-            //     System.out.printf("P1 wins with ", P1wins);
-            // }
-            // if (Cwins > P1wins & Cwins > Ties){
-            //     System.out.printf("C wins with", Cwins);
-            // }
-            // else{
-            //     System.out.printf("It was a draw with", Ties);
-            // }
 
             List<Integer> scores = new ArrayList<Integer>();
             List<String> winners = new ArrayList<String>();
@@ -67,15 +53,16 @@ public class RockPaperScissors {
                 winners.add(key);
             }
             System.out.printf("The winner is: " + winners.get(scores.indexOf(Collections.max(scores))) + " with a total score of: " + Collections.max(scores));
-        }            
+        
+        }
         else{
             System.out.println("Restart Program to start again.");
         }
         in.close();
 	}
 
-    private static Map<String, Integer> playGame(String P1, Map<String, Integer> results) {   
-        List<String> choices = Arrays.asList("Paper", "Scissors", "Rock");
+    private static Map<String, Integer> playGame(List<String> choices, String P1, Map<String, Integer> results) {   
+        
         String C = choices.get(new Random().nextInt(choices.size()));
 
         if (P1.equals("Rock") & C.equals("Scissors")){
